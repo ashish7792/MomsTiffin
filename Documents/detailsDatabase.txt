@@ -1,0 +1,205 @@
+USE [CCBuild]
+GO
+/****** Object:  StoredProcedure [dbo].[CCLogin]    Script Date: 01/04/2017 12:44:51 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[CCLogin] 
+	@qryflg char(50)=null,
+	@CCUd nvarchar(50)=null,
+	@attempts int=null,
+	@CCUserPwd nvarchar(20)=null
+	
+as
+begin
+if @qryflg= 'CheckLogin'
+begin
+  select CrUd,attemptcount, CrUp from CanReg where CrUd = @CCUd and CrUp = @CCUserPwd;
+
+end
+
+if @qryflg= 'UpdateLogin'
+begin
+  
+update CanReg set attemptcount=0 where CrUd=@CCUd and  CrUp=@CCUserPwd;
+
+end
+
+if @qryflg= 'maxAttemptLogin'
+begin
+
+  update CanReg  set islocked=1, attemptcount=@attempts where CrUd=@CCUd and  CrUp=@CCUserPwd;
+
+end
+
+if @qryflg= 'maxelseAttemptLogin'
+begin
+
+  update CanReg set attemptcount=@attempts where CrUd=@CCUd
+  
+end
+
+
+end
+
+
+CustomerDetails
+
+USE [CCBuild]
+GO
+/****** Object:  StoredProcedure [dbo].[InserttoCustomerDetails]    Script Date: 01/09/2017 14:12:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[InserttoCustomerDetails]
+	@qryflag char(50)=null,
+	@custname nvarchar(50)=null,
+	@custemail nvarchar(50) =null,
+	@custcomment nvarchar(50) =null
+as 
+begin
+if @qryflag = 'CustomerInfo'
+begin
+  Insert into CustomerDetails(Custname,Custemail,Custcomment)values(@custname,@custemail,@custcomment);
+end
+
+end
+
+Vegitems
+
+USE [CCBuild]
+GO
+/****** Object:  StoredProcedure [dbo].[InserttoVegDetails]    Script Date: 01/10/2017 15:59:56 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[InserttoVegDetails]
+  @qryflag char(50)=null,
+  @mealno int =null,
+  @mealname nvarchar(50)=null,
+  @items nvarchar(100) =null,
+  @price int= null  
+ 
+AS
+BEGIN
+if @qryflag ='savetoVegItems'
+begin
+ 
+ select mealno,mealname,items,price from dbo.VegItems;
+ 
+end
+
+END
+
+USE [CCBuild]
+GO
+/****** Object:  StoredProcedure [dbo].[InserttoNonvegitems]    Script Date: 01/10/2017 16:00:11 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[InserttoNonvegitems]
+	@qryflag char(50)=null,
+	@nonvegmealno int= null,
+	@nonvegmealname nvarchar(50)=null,
+	@nonvegitems nvarchar(50)=null,
+	@nonvegprice int =null
+AS
+BEGIN
+if @qryflag ='savenonvegDetails'
+begin
+select nonvegmealno,nonvegmealname,nonvegitems,nonvegprice from dbo.NonVegItems
+end
+END
+
+
+
+dbo.Admintable 
+
+SP: InserttoAdmin
+USE [CCBuild]
+GO
+/****** Object:  StoredProcedure [dbo].[InserttoAdmin]    Script Date: 01/31/2017 19:56:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[InserttoAdmin]
+@qryflag char(50)=null,
+@username nvarchar(50)=null,
+@mobno nvarchar(50)=null,
+@addrs nvarchar(max) =null,
+@subdate datetime = null,
+@lord nvarchar(50)=null,
+@mno int =null,
+@mealnm nvarchar(50)=null,
+@mealitem nvarchar(100) =null,
+@qty int = null,
+@price int = null
+
+AS
+BEGIN
+if(@qryflag = 'savetoAdmintable')
+begin
+Insert into dbo.Admintable (username,mobno,addrs ,subdate,lord,mno,mealnm,mealitem,qty,price)values(@username,@mobno,@addrs,@subdate,@lord,@mno,@mealnm,@mealitem,@qty,@price);
+end
+if(@qryflag = 'displayAdminData')
+begin
+Select username,mobno,addrs,subdate,lord,mno,mealnm,mealitem,qty,price from Admintable;
+end
+END
+
+
+
+
+DB:DeliveryAddDetails
+SP: InsertoDeliverydetails
+
+
+
+USE [CCBuild]
+GO
+/****** Object:  StoredProcedure [dbo].[InsertoDeliverydetails]    Script Date: 02/14/2017 16:39:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[InsertoDeliverydetails]
+@qryflag char(50) =null,
+@fname nvarchar(50)=null,
+@hname nvarchar(50)=null,
+@streetname nvarchar(50)=null,
+@areacity nvarchar(50)=null,
+@pin nvarchar(50)=null,
+@majlandmark nvarchar(50)=null
+
+AS
+BEGIN
+if(@qryflag ='savetoDeliveryAdd')
+begin
+Insert into DeliveryAddDetails(fname,hname,streetname,areacity,pin,majlandmark)values(@fname,@hname,@streetname,@areacity,@pin,@majlandmark);
+end
+
+END
+
