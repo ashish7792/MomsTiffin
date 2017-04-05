@@ -1,0 +1,26 @@
+{
+  "name": "RFabulous",
+  "version": "1.0.0",
+  "description": "Simple product enquire website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashish7792/MomsTiffin.git"
+  },
+  "keywords": [
+    "product-enquire"
+  ],
+  "author": "Ashish",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashish7792/MomsTiffin.git/issues"
+  },
+  "homepage": "https://github.com/ashish7792/MomsTiffin.git#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+
+  }
+}
