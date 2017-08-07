@@ -77,13 +77,12 @@
 
 
 </head>
-<body style="background-image: url(/Images/loginback.jpg);background-position: -800px -370px;">
+<body style="background-image: url(Images/loginback.jpg);background-position: -800px -370px;">
  <div class="pen-title">
-  <h1>Welcome to Mom's Spoon</h1>
       <h3 style="color:white;">Please Login</h3>
 </div>
     
-          <div class="container checkout-bar" style="padding: 0px 120px !Important;">		
+          <div class="container checkout-bar" >		
 	<ul class="checkout">
 	  <li class="is-active" data-step="1" >
 		Cart
@@ -156,7 +155,7 @@
 
     <h2 style="color:#000000;">Login to your account</h2>
     <asp:Label ID="lblmsger" runat="server" Text=""></asp:Label>
-    <form>
+    <form style="padding: 25px;">
           <asp:Label ID="lblemail" runat="server" Text="E-mail" style="color:black;"></asp:Label>
 
         

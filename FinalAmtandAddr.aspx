@@ -85,6 +85,7 @@
 }
 </style>
 
+
   </head>
 
 <body ng-controller="mainCtrl" style="background-color:rgba(0, 0, 0, 0.68);">
@@ -115,7 +116,7 @@
           <h1 style="text-align:center;color:aliceblue;font-family: -webkit-pictograph;">Order Confirmation</h1>
           <!--<h3 style="color:aliceblue;">Session Expires in:&nbsp;<span id="secondsIdle"></span>&nbsp;seconds.</h3>-->
            <br/>
-          <div class="container checkout-bar" style="padding: 0px 120px !Important;">		
+          <div class="container checkout-bar">		
 	<ul class="checkout">
 	  <li class="is-active" data-step="1" >
 		Cart
@@ -147,7 +148,6 @@
 
                         <tr>
                                  <th>Mealno</th>
-                                 <th>Mealname</th>
                                  <th>Item</th>
                                  <th>Quantity</th>
                                  <th>Price</th>
@@ -156,9 +156,6 @@
                              <tr>
                                  <td>
                                      <asp:Label ID="lbmealno" runat="server" Text=""></asp:Label>
-                                 </td>
-                                 <td>
-                                     <asp:Label ID="lbmealnm" runat="server" Text=""></asp:Label>
                                  </td>
                                   <td>
                                      <asp:Label ID="lblitm" runat="server" Text=""></asp:Label>
@@ -178,15 +175,29 @@
                                  <td>&nbsp;</td>
                                  <td>&nbsp;</td>
                                   <td> 
-                                    &nbsp;
+                                  <i class="fa fa-inr"></i><asp:Label ID="lbltamt" runat="server" Text=""></asp:Label>
                                  </td>
-                                 <td>
-                                   <i class="fa fa-inr"></i><asp:Label ID="lbltamt" runat="server" Text=""></asp:Label>
-                                 </td>
+                              
                                  </tr>
                               
                       </table>
-          
+                     <table class="table" style="box-shadow: 12px 18px 48px black;">
+                         <tr>
+                              <th>Cancellation Policy</th>
+                         </tr>
+                         <tr>
+                             <td ><asp:Label id="changeStat" runat="server">You can cancel your current order  on clicking the Cancel button</asp:Label>
+                             <asp:Label id="Td1" runat="server">Your  Order have cancelled now !..</asp:Label></td>
+                         </tr>
+                         <tr>
+                             <td><asp:Button ID="btnCancel" runat="server" Text="Cancel" class="glyphicon glyphicon-flash"  TabIndex="3" style="background-color: orange;color: White;cursor: pointer;height: 35px;width: 100px;font-size: 15px;" OnClick="btnCancel_Click"/>
+                             <asp:Button ID="btnBack" runat="server" Text="Back" class="glyphicon glyphicon-flash"  TabIndex="3" style="background-color: orange;color: White;cursor: pointer;height: 35px;width: 100px;font-size: 15px;" OnClick="btnBack_Click"/>
+                                 </td>
+                         </tr>
+                     </table> 
+                     
+
+
                   </div>
                   <div class="col-lg-6">
                           <table  class="table" style="box-shadow: 12px 18px 48px black;">
@@ -202,58 +213,46 @@
                                   
                                   <tr>   
                                    <td>
-                                         <span style="color:red;font-size: 11px;">Below all fields are mandatory *</span>
-                                    <asp:TextBox ID="txtFName" runat="server" placeholder="Enter full name" style="width: 275px;border: 2px solid;height: 35px;"></asp:TextBox>
+                                        <!--<span style="color:red;font-size: 11px;">Below all fields are mandatory *</span>-->
+                                    <asp:TextBox ID="txtFName" runat="server" placeholder="Enter full name" style="width: 275px;border: 2px solid;height: 35px;" ></asp:TextBox>
                                    
                                        </td>
-                                      <td>
-                                       <asp:RequiredFieldValidator runat="server" id="reqName" controltovalidate="txtFName" errormessage="Please enter your full name!" />
-                                      </td>
+                                
                                       </tr>
                                     <tr>
                                     <td>
                                     <asp:TextBox ID="txtAdd1" runat="server" placeholder="Enter houseno,Apartment name" style="width: 275px;border: 2px solid;height: 35px;"></asp:TextBox>
                                         </td>
-                                        <td>
-                                         <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator1" controltovalidate="txtAdd1" errormessage="Please enter houseno,Apartment name!" />
-                                         </td>
+                                     
                                         </tr>
                                    <tr>
                                      <td>
-                                        <asp:TextBox ID="txtAdd2" runat="server" placeholder="Enter street,MainCross" style="width: 275px;border: 2px solid;height: 35px;"></asp:TextBox>
+                                        <asp:TextBox ID="txtAdd2" runat="server" placeholder="Enter street,MainCross" style="width: 275px;border: 2px solid;height: 35px;" ></asp:TextBox>
                                          
                                      </td>
-                                       <td>
-                                      <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator2" controltovalidate="txtAdd2" errormessage="Please enter Address street,MainCross!" />
-                                       </td>
+                                     
                                    </tr>
                                    <tr>
                                      <td>
-                                    <asp:TextBox ID="txtAdd3" runat="server" placeholder="Enter Area Name,Cityname" style="width: 275px;border: 2px solid;height: 35px;"></asp:TextBox>
+                                    <asp:TextBox ID="txtAdd3" runat="server" placeholder="Enter Area Name,Cityname" style="width: 275px;border: 2px solid;height: 35px;" ></asp:TextBox>
                                     </td>
-                                       <td>
-                                       <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator3" controltovalidate="txtAdd3" errormessage="Please enter Address Area Name,Cityname!" />
-                                       </td>
+                                    
                                    </tr>
                                    <tr>
                                      <td>
-                                    <asp:TextBox ID="txtPincode" runat="server" placeholder="Enter Pincode" style="width: 275px;border: 2px solid;height: 35px;"></asp:TextBox>
+                                    <asp:TextBox ID="txtPincode" runat="server" placeholder="Enter Pincode" style="width: 275px;border: 2px solid;height: 35px;" ></asp:TextBox>
                                         
                                     </td>
-                                       <td>
-                                        <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator4" controltovalidate="txtPincode" errormessage="Please enter Pincode!" />
-                                       </td>
+                                     
                                    </tr>
                                <tr>
                                    <td><asp:TextBox ID="txtMjld" runat="server" placeholder="Enter Major Landmark" style="width: 275px;border: 2px solid;height: 35px;"></asp:TextBox></td>
-                               <td>
-                               <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator5" controltovalidate="txtMjld" errormessage="Please enter Major Landmark!" />
-                                 </td>
+                            
                                    </tr>
                            </table>
                         </form>
                       
-           <asp:Button ID="DelvBtn" runat="server" Text="Checkout" class="glyphicon glyphicon-flash"  TabIndex="3" style="background-color: #39a969;color: White;cursor: pointer;height: 45px;width: 140px;font-size: 20px;" OnClick="DelvBtn_Click" />
+           <asp:Button ID="DelvBtn" runat="server" Text="Checkout" class="glyphicon glyphicon-flash"  TabIndex="3" style="background-color: #39a969;color: White;cursor: pointer;height: 35px;width: 100px;font-size: 15px;" OnClick="DelvBtn_Click" />
 
                       <asp:ImageButton ID="CheckoutImageBtn" runat="server" 
                       ImageUrl="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" 

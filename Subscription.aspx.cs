@@ -33,11 +33,7 @@ public partial class Subscription : System.Web.UI.Page
 
             string firstStr = Session["mno"].ToString();
 
-              maintainSessionRecord(firstStr);
-
-              if (PreviousPage != null)
-              {
-
+          
                   if (str != null)
                   {
                       con.Open();
@@ -49,7 +45,7 @@ public partial class Subscription : System.Web.UI.Page
                       if (dt.Rows.Count > 0)
                       {
                           lbmealno.Text = dt.Rows[0][0].ToString();
-                          lbmealnm.Text = dt.Rows[0][1].ToString();
+                         // lbmealnm.Text = dt.Rows[0][1].ToString();
                           lblitm.Text = dt.Rows[0][2].ToString();
                           lblprice.Text = dt.Rows[0][3].ToString();
 
@@ -60,15 +56,14 @@ public partial class Subscription : System.Web.UI.Page
                           int total = s1 * s2;
                           lbltamt.Text = total.ToString();
 
-                          if (lbmealno.Text != "")
+                       if (lbmealno.Text != "")
                           {
                               Session["mealno"] = lbmealno.Text;
                           }
                           else
                           {
                               Session["mealno"] = null;
-                          }
-                          Session["mealnm"] = lbmealnm.Text;
+                       }        
                           Session["mealitem"] = lblitm.Text;
                           Session["price"] = lblprice.Text;
 
@@ -79,47 +74,9 @@ public partial class Subscription : System.Web.UI.Page
               }
 
         }
-    }
+    
 
-    protected void maintainSessionRecord(string Sw)
-    {
-         
-                con.Open();
-                SqlCommand cmd1 = new SqlCommand("Select * from Orderfood where mealno = '" + Sw + "'", con);
-                DataTable dt = new DataTable();
-                SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
-                da1.Fill(dt);
-
-                if (dt.Rows.Count > 0)
-                {
-                    lbmealno.Text = dt.Rows[0][0].ToString();
-                    lbmealnm.Text = dt.Rows[0][1].ToString();
-                    lblitm.Text = dt.Rows[0][2].ToString();
-                    lblprice.Text = dt.Rows[0][3].ToString();
-                   
-
-                    int s1 =  dpdQuantity.SelectedIndex + 1;
-                    int s2 =  int.Parse(lblprice.Text);
-
-                       int total = s1 * s2;
-                       lbltamt.Text = total.ToString();
-
-                       if (lbmealno.Text != "")
-                       {
-                            Session["mealno"] = lbmealno.Text;
-                       }
-                       else 
-                       {
-                           Session["mealno"] = null;
-                       }
-                       Session["mealnm"] = lbmealnm.Text;
-                       Session["mealitem"] = lblitm.Text;
-                       Session["price"] = lblprice.Text;
-                       
-                }
-                con.Close();
-            }
-
+  
     protected void dpdQuantity_SelectedIndexChanged(object sender, EventArgs e)
     {
         

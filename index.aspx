@@ -45,12 +45,12 @@
      
         @media screen and (max-width: 767px) {
     .table-responsive {
-        width: 237% !Important;
+        width: 100% !Important;
         margin-bottom: 15px;
         overflow-y: hidden;
         -ms-overflow-style: -ms-autohiding-scrollbar;
         border: 1px solid #ddd;
-        margin-left: -120px !Important;
+        margin-left: 0px !Important;
     }
 }
 
@@ -319,26 +319,26 @@
       <div class="row">
         <div class="col-sm-6">
          
-          <asp:TextBox ID="txtusername" runat="server"  Width="255px"  placeholder="Name"  ng-model="name"  style="border:2px solid #d8874c ;color:black;"></asp:TextBox>
+          <asp:TextBox ID="txtusername" runat="server"  Width="255px"  placeholder="Name"  ng-model="name"  style="color:black;"></asp:TextBox>
            
         </div>
         
         <div class="col-sm-6 ">
-            <asp:TextBox ID="txtuseremail"  runat="server" Width="255px"  placeholder="Email"  ng-model="email" style="border:2px solid #d8874c;color:black;"></asp:TextBox>
+            <asp:TextBox ID="txtuseremail"  runat="server" Width="255px"  placeholder="Email"  ng-model="email" style="color:black;"></asp:TextBox>
              
            
         </div>
       </div>
        <br/> 
 
-         <asp:TextBox ID="txtCommentDetails" runat="server"  placeholder="Comment" style="border:2px solid #d8874c;color:black;"  TextMode="MultiLine" Height="80px" Width="65%" MaxLength="400" ></asp:TextBox>
+         <asp:TextBox ID="txtCommentDetails" runat="server"  placeholder="Comment" style="color:black;"  TextMode="MultiLine" Height="80px" Width="65%" MaxLength="400" ></asp:TextBox>
         
 
       <br>
       <div class="row">
         <div class="col-md-12 ">
 
-            <asp:Button ID="btnSend" runat="server" Text="Send"  style="border: 1px solid #333;background-color: #fff;color: #f5f5f5;background: #d8874c;width: 35%;height: 40px;" OnClick="btnSend_Click1" />
+            <asp:Button ID="btnSend" runat="server" Text="Send"  style="background-color: #fff;color: #f5f5f5;background: #d8874c;height: 40px;" OnClick="btnSend_Click1" />
         </div>
       </div>
          
@@ -346,27 +346,6 @@
       
   </div>
   <br>
-  <h3 class="text-center" style="color:aliceblue;">From The Kitchen</h3>  
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Nikhil</a></li>
-    <li><a data-toggle="tab" href="#menu1">Pratibha</a></li>
-    <li><a data-toggle="tab" href="#menu2">Ashish</a></li>
-  </ul>
-
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <h2>Nikhil ,Manager</h2>
-      <p>food details and about info</p>
-    </div>
-    <div id="menu1" class="tab-pane fade">
-      <h2>Pratibha, Chef</h2>
-      <p>Always a pleasure people! Hope you enjoyed it as much as I did. Could I BE.. any more pleased?</p>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-      <h2>Ashish,Co-ordinater</h2>
-      <p>I mean, sometimes I enjoy to code, but other times I enjoy other things.</p>
-    </div>
-  </div>
 </div>
         <!--Order food section-->
         <div id="Pricing">
@@ -376,7 +355,7 @@
                           
                       <div class="sumtotal"></div>
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                        
                         <p><img src="Images/vegicon.png" width="50" height="50"/><strong>Veg-Menu</strong></p>
                         
@@ -408,7 +387,7 @@
   
                        </div>
                        </div>
-                        <div class="col-sm-6">         
+                        <div class="col-sm-12">         
                         <p><img src="Images/nonvegicon.png" width="40" height="40"/><strong>Non-Veg Menu</strong></p>
                             <br/>
                           <div class="table-responsive">
@@ -438,11 +417,12 @@
             </div>
              
 
-<div id="googleMap"></div>
+<div id="googleMap" style="height:400px;width:100%;"></div>
 <!-- Add Google Maps -->
-        <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPm1TBAvOCQlMQRPbGYIotN2QWTnbRK-A&callback=initMap"
+  type="text/javascript"></script>
 <script>
-    var myCenter = new google.maps.LatLng(19.077065, 72.998993  );
+    var myCenter = new google.maps.LatLng(19.118294, 73.027587);
 
     function initialize() {
         var mapProp = {
@@ -465,6 +445,8 @@
     google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
+
+ 
 <!-- Footer -->
 <footer class="text-center">
   <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">

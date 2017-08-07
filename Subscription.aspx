@@ -105,7 +105,7 @@
 <body ng-controller="mainCtrl" style="background: rgba(51, 122, 183, 0.77);">
       
     <form id="form1" runat="server">
-       
+       <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -131,7 +131,7 @@
            <br/>
           
 
-          <div class="container checkout-bar" style="padding: 0px 120px !Important;">		
+          <div class="container checkout-bar">		
 	<ul class="checkout">
 	  <li class="is-active" data-step="1">
 		Cart
@@ -198,15 +198,15 @@ We try our best to meet your delivery expectation, however we can’t guarantee 
                           <td>
                               <asp:label ID="lblPickDt" runat="server" text="From date"></asp:label>                            
                               <asp:TextBox ID="txtCalender" runat="server" OnTextChanged="txtCalender_TextChanged"></asp:TextBox>
-                               <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                              <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtCalender"></asp:CalendarExtender>
+                               
+                              <asp:CalendarExtender ID="CalendarExtender1" Format="dd-MMM-yyyy" runat="server" BehaviorID="CalendarExtender1" TargetControlID="txtCalender"></asp:CalendarExtender>
                               </td>
                           </tr>
                            <tr>
                           <td>
                               <asp:label ID="Label2" runat="server" text="To  date"></asp:label>                            
                               <asp:TextBox ID="txtCalendertoDate" runat="server" style="margin-left:20px;" ></asp:TextBox>
-                              <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtCalendertoDate"></asp:CalendarExtender>
+                              <asp:CalendarExtender ID="CalendarExtender2" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtCalendertoDate"></asp:CalendarExtender>
                               </td>
 
                                </tr>
@@ -239,62 +239,58 @@ We try our best to meet your delivery expectation, however we can’t guarantee 
                            </table>
                       
                      <table class="table" style="box-shadow: 12px 18px 48px black;">
-                         
 
-                        <tr>
-                                 <th>Mealno</th>
-                                 <th>Mealname</th>
-                                 <th>Item</th>
-                                 <th>Quantity</th>
-                                 <th>Price</th>
 
-                          </tr>
-                             <tr>
-                                 <td>
-                                     <asp:Label ID="lbmealno" runat="server" Text=""></asp:Label>
-                                 </td>
-                                 <td>
-                                     <asp:Label ID="lbmealnm" runat="server" Text=""></asp:Label>
-                                 </td>
-                                  <td>
-                                     <asp:Label ID="lblitm" runat="server" Text=""></asp:Label>
-                                    
-                                 </td>                                 
-                              
-                                 <td>
-                                     <asp:DropDownList ID="dpdQuantity" runat="server" 
-                                       AutoPostBack="True"  onselectedindexchanged="dpdQuantity_SelectedIndexChanged">
+                         <tr>
+                           
+                             <th>MealNo</th>
+                             <th>Item</th>
+                             <th>Quantity</th>
+                             <th>Price</th>
+
+                         </tr>
+                         <tr>
+                             <td>
+                                 <asp:Label ID="lbmealno" runat="server" Text=""></asp:Label>
+
+                             </td>
+                            
+                             <td>
+                                 <asp:Label ID="lblitm" runat="server" Text=""></asp:Label>
+
+                             </td>
+
+                             <td>
+                                 <asp:DropDownList ID="dpdQuantity" runat="server"
+                                     AutoPostBack="True" OnSelectedIndexChanged="dpdQuantity_SelectedIndexChanged">
                                      <asp:ListItem Value="1">1</asp:ListItem>
                                      <asp:ListItem Value="2">2</asp:ListItem>
                                      <asp:ListItem Value="3">3</asp:ListItem>
                                      <asp:ListItem Value="4">4</asp:ListItem>
-                                     </asp:DropDownList>
-                                 </td>
-                                  <td>
-                                     <asp:Label ID="lblprice" runat="server" Text=""></asp:Label>
-                                 </td>
-                                 </tr>
-                               
-                                 <tr>
-                                 <td><asp:Label ID="lbltotal" runat="server" Text="Total" style="color:red;font:bold;"></asp:Label></td>
-                                 <td>&nbsp;</td>
-                                 <td>&nbsp;</td>
-                                 <td>&nbsp;</td>
-                                 <td>
-                                   <i class="fa fa-inr"></i><asp:Label ID="lbltamt" runat="server" Text=""></asp:Label>
-                                 </td>
-                                 </tr>
-                                 <tr>
-                                     <td>&nbsp;</td>
-                                     <td>&nbsp;</td>
-                                     <td>&nbsp;</td>
-                                      <td>&nbsp;</td>
-                                     <td>
-                                     <asp:Button ID="btnPrcodr" runat="server" Text="Proceed" class="pull-right" OnClick="btnPrcodr_Click" style="background: #00ba8c;color: aliceblue;box-shadow: 5px 7px black;font-family: inherit;height: 45px;"/>
-                                    </td>
-                                 </tr>
-                              
-                      </table>
+                                 </asp:DropDownList>
+                             </td>
+                             <td>
+                                 <asp:Label ID="lblprice" runat="server" Text=""></asp:Label>
+                             </td>
+                         </tr>
+
+                         <tr>
+                             <td>
+                                 <asp:Label ID="lbltotal" runat="server" Text="Total" Style="color: red; font: bold;"></asp:Label></td>
+                             <td>&nbsp;</td>
+                             <td></td>
+                             <td><i class="fa fa-inr"></i>
+                                 <asp:Label ID="lbltamt" runat="server" Text=""></asp:Label></td>
+                         </tr>
+                         <tr>
+                             <td>&nbsp;</td>
+                               <td>&nbsp;</td>
+                             <td>
+                             </td>
+                             <td> <asp:Button ID="btnPrcodr" runat="server" Text="Proceed" class="pull-left" OnClick="btnPrcodr_Click" Style="background: #00ba8c; color: aliceblue; box-shadow: 5px 7px black; font-family: inherit; height: 45px;" /></td>
+                         </tr>
+
+                     </table>
         
                  </div>
                 

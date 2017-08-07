@@ -27,15 +27,15 @@ public partial class FinalAmtandAddr : System.Web.UI.Page
         {
             try
             {
-                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+               Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
                 Session["Reset"] = true;
                 Configuration config = WebConfigurationManager.OpenWebConfiguration("~/Web.Config");
                 SessionStateSection section = (SessionStateSection)config.GetSection("system.web/sessionState");
                 int timeout = (int)section.Timeout.TotalMinutes * 1000 * 60;
                 ClientScript.RegisterStartupScript(this.GetType(), "SessionAlert", "SessionExpireAlert(" + timeout + ");", true);
-
-
+                btnBack.Visible = false;
+                Td1.Visible = false;
 
                 if (Session["mealno"].ToString() == "NULL")
                 {
@@ -45,7 +45,7 @@ public partial class FinalAmtandAddr : System.Web.UI.Page
                 else
                 {
                     lbmealno.Text = Session["mealno"].ToString();
-                    lbmealnm.Text = Session["mealnm"].ToString();
+                   // lbmealnm.Text = Session["mealnm"].ToString();
                     lblitm.Text = Session["mealitem"].ToString();
                     lbltamt.Text = Session["total"].ToString();
                     lblqty.Text = Session["qty"].ToString();
@@ -83,7 +83,7 @@ public partial class FinalAmtandAddr : System.Web.UI.Page
         txtMjld.Text = "";
 
 
-       /* MailMessage m = new MailMessage();
+       MailMessage m = new MailMessage();
         SmtpClient sc = new SmtpClient();
         try
         {
@@ -105,7 +105,7 @@ public partial class FinalAmtandAddr : System.Web.UI.Page
         catch (Exception ex)
         {
             Response.Write(ex.Message);
-        }*/
+        }
          
 
         if (Session["username"]  != null)
@@ -211,7 +211,7 @@ public partial class FinalAmtandAddr : System.Web.UI.Page
 
                //string usrNon = Session["usermob"].ToString();
 
-          /*  string strUrl = "http://api.mVaayoo.com/mvaayooapi/MessageCompose?user=aniketulhalkar28@gmail.com:aniket123&senderID=TEST SMS&receipientno=" + mob + "&msgtxt=" + msghead + " " + lbmealnm.Text + " " + lblitm.Text + " " + qt + " " + Session["qty"].ToString() + " " + pr + " " + Session["total"].ToString() + " " + rs + " " + msgend + "&state=4";
+           /* string strUrl = "http://api.mVaayoo.com/mvaayooapi/MessageCompose?user=aniketulhalkar28@gmail.com:aniket123&senderID=TEST SMS&receipientno=" + mob + "&msgtxt=" + msghead + " " + lbmealnm.Text + " " + lblitm.Text + " " + qt + " " + Session["qty"].ToString() + " " + pr + " " + Session["total"].ToString() + " " + rs + " " + msgend + "&state=4";
             WebRequest request = HttpWebRequest.Create(strUrl);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             Stream s = (Stream)response.GetResponseStream();
@@ -229,5 +229,24 @@ public partial class FinalAmtandAddr : System.Web.UI.Page
     protected void CheckoutBtn_Click(object sender, ImageClickEventArgs e)
     {
         Response.Redirect("https://www.paypal.me/AshishWaghmare");
+    }
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+
+        lbmealno.Text = "";
+        // lbmealnm.Text = Session["mealnm"].ToString();
+        lblitm.Text = "";
+        lbltamt.Text = "";
+        lblqty.Text = "";
+        lblprice.Text = "";
+        ClientScript.RegisterStartupScript(GetType(), "alert", "Current Order cancelled!..", true);
+        btnBack.Visible = true;
+        btnCancel.Visible = false;
+        changeStat.Visible = false;
+        Td1.Visible = true;
+    }
+    protected void btnBack_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("index.aspx");
     }
 }
